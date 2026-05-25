@@ -4,28 +4,35 @@
 #include <string.h>
 
 int main() {
-  printf("Please enter some text: \n");
+  // printf("Please enter some text: \n");
 
   char *buff = NULL;
   size_t size = 0;
-  ssize_t num_char = getline(&buff, &size, stdin);
 
-  if (num_char == -1) {
-    perror("getline falied");
-    free(buff);
-    return 1;
+  while (1) {
+    printf("Please enter some text: \n");
+
+    ssize_t num_char = getline(&buff, &size, stdin);
+
+    if (num_char == -1) {
+      perror("getline falied");
+      free(buff);
+      return 1;
+    }
+
+    if (num_char == 1) {
+      break;
+    }
+
+    printf("Tokens: \n");
+
+    char *saveptr = NULL;
+    char *token = strtok_r(buff, " \n", &saveptr);
+    while (token != NULL) {
+      printf(" %s \n", token);
+      token = strtok_r(NULL, " \n", &saveptr);
+    }
   }
-
-  printf("Tokens:\n");
-
-  char *saveptr = NULL;
-  char *token = strtok_r(buff, " \n", &saveptr);
-
-  while (token != NULL) {
-    printf(" %s \n", token);
-    token = strtok_r(NULL, " \n", &saveptr);
-  }
-
   free(buff);
 
   return 0;
