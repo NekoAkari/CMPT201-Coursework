@@ -17,7 +17,7 @@ int main() {
     if (num_char == -1) {
       perror("getline falied");
       free(buff);
-      return 1;
+      exit(EXIT_FAILURE);
     }
 
     if (num_char == 1) {
