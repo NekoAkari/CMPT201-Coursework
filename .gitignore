@@ -53,3 +53,9 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# recording files
+.record/
+
+#neovim session files
+.nvim/
